@@ -1,0 +1,22 @@
+{% extends 'base-dash.html' %}
+
+<!-- page title -->
+{% block title %}
+confirmation
+{% endblock %}
+
+<!-- content -->
+{% block content %}
+<h2>
+    Are you sure you want to delete?
+</h2>
+<h1 style="color: red">Alert:  {{subject}}</h1><br>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes" class="btn btn-danger">
+    <a href="{% url 'subject' %}">
+        <div class="btn btn-black"> No</div>
+    </a>
+</form>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base-dash.html' %}
+
+{% block title %}
+Assignments
+{% endblock %}
+
+<!-- form -->
+{% block content %}
+<span class="align-middle">
+  <div class="mb-3">
+    <form action="" method="POST" style="padding: 30px; margin: 50px;">
+
+      {% csrf_token %}
+      {{ form }}
+
+      <!-- students will be displayed in a checklist form for possible multiple selection and courses will be displayed in a list form or radio button to
+            prevent multiple selection of course 
+          
+          using the fk ids to fetch data from respective tables-->
+      <p>Forms here</p>
+      <input type="submit" value="Add Course" class="btn btn-dark">
+    </form>
+  </div>
+</span>
+
+<!-- report on list of added courses starts here -->
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Student ID</th>
+      <th scope="col">Student Name</th>
+      <th scope="col">Course</th>
+      <th scope="col">Subjects</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.student.student_Id }}</td>
+            <td>{{ item.student.name }}</td>
+            <td>{{ item.course.course_name }}</td>
+
+            {% for i in sub %}
+            {% if i.course_alloc.course_Id == item.course.course_Id %}
+            <td>
+              {{ i.subject }}
+            </td>
+            {% endif %}
+            {% endfor %}
+            <td>
+                <a href="{% url 'assignment_update' item.id %}" class="btn btn-dark">Edit</a>
+                <a href="{% url 'delete_assign' item.id %}" class="btn btn-danger">Remove</a>
+            </td>         
+          </tr>
+        {% endfor %}
+      </tbody>
+</table>
+<!-- report on list of added courses ends here -->
+
+
+{% endblock %}
+<!-- end of form -->

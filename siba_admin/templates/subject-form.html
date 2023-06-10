@@ -1,0 +1,58 @@
+{% extends 'base-dash.html' %}
+
+{% block title %}
+Subjects
+{% endblock %}
+
+<!-- form -->
+{% block content %}
+<span class="align-middle">
+    <div class="mb-3">
+        <form action="" method="POST" style="padding: 30px; margin: 50px;">
+            
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Add Subject" class="btn btn-dark">
+        </form>
+    </div>
+</span>
+
+<!-- report on list of added courses starts here -->
+<table class="table table-hover" style="margin-top: 50px !important;">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Subject Id</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Course</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in subject_tb %}
+        <tr>
+            <th scope="row">{{ item.auto_increment_number }}</th>
+            <td><a href="" class="text-decoration-none text-black">{{ item.id }}</a></td>
+            <td>{{ item.subject }}</td>
+            <td>{{ item.course_alloc.course_name }}</td>
+            <td>
+              <div>
+                  <!-- edit btn -->
+                <a href="{% url 'subject_update' item.id %}">
+                  <div class="btn btn-dark">Edit</div>
+                </a>
+                <a href="{% url 'delete_subject' item.id %}">
+                  <div class="btn btn-danger">Delete</div>
+                </a>
+              </div>
+            </td>         
+          </tr>
+        {% endfor %}
+      </tbody>
+</table>
+<!-- report on list of added courses ends here -->
+
+
+{% endblock %}
+<!-- end of form -->
+

@@ -1,0 +1,23 @@
+<!-- extending attributes of the base pase on this page -->
+{% extends 'base.html' %}
+
+{% block title %}Application{% endblock %}
+
+<!-- content of the current page goes here -->
+
+{% block content %}
+<span class="align-middle">
+    <div class="mb-3">
+        <form action="" method="POST" style="padding: 30px; margin: 50px;">
+            <!-- introducing the python form file created -->
+            
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Apply" class="btn btn-dark">
+        </form>
+    </div>
+</span>
+
+{% endblock%}
+
+<!-- content of the current page ends here -->

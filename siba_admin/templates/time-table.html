@@ -1,0 +1,82 @@
+{% extends 'base-dash.html' %}
+
+{% block title %}
+Scheduler
+{% endblock %}
+
+<!-- contend of the scheduler page -->
+{% block content %}
+
+<p>{{ selected_course_id }}</p>
+
+<!-- the scheduler goes here -->
+
+<form method="POST">
+  {% csrf_token %}
+  <label for="course">Select a course:</label>
+  <select id="course" name="course" class="form-select">
+    {% for item in coursa %}
+    <option value="{{ item }}">{{ item }}</option>
+    {% endfor %}
+  </select>
+  <br>
+  <input type="submit" value="Generate Time Table" class="btn btn-dark">
+</form>
+
+<!-- the scheduler ends here -->
+
+<!-- the output starts here -->
+
+<div class="container">
+  <h2>Timetable</h2>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in timetable_data %}
+      <tr>
+        <td>{{ row.time }}</td>
+        <td>{{ row.monday }}</td>
+        <td>{{ row.tuesday }}</td>
+        <td>{{ row.wednesday }}</td>
+        <td>{{ row.thursday }}</td>
+        <td>{{ row.friday }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- the output ends here -->
+
+<!-- display data from table in database -->
+<div class="container" style="margin-top: 50px !important;">
+  <h5>Time Tables Created:</h5>
+  <table>
+    <tbody>
+      {% for row in date_and_time %}
+      <tr>
+        <td>
+          Generated on: {{ row.TimeGenerated|date:"F d, Y H:i" }}
+        </td>
+        <td>
+          <a href="{% url 'delete_table' row.id %}" class="btn btn-danger" style="margin-left: 30px;">Delete</a>
+          <a href="{% url 'table_view_pdf' row.id  %} " target="_blank" class="btn btn-dark">Print</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+<!-- display ends here -->
+
+{% endblock %}

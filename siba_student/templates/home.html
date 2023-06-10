@@ -1,0 +1,53 @@
+<!-- extending attributes of the base pase on this page -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+<!-- content of the current page goes here -->
+
+{% block content %}
+<h1>HOME</h1>
+
+<!-- short inputs on the page -->
+<div class="card mb-3" style="max-width: 540px;" style="padding: 30px; margin: 50px;">
+    <div class="row g-0">
+        <div class="col-md-4" style="margin-bottom: 20px;">
+            <img src="{% static 'siba-student/images/a1.jpg' %}" class="img-fluid rounded-start" alt="Great Aquinas">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">ST. THOMAS AQUINAS SENIOR HIGH SCHOOL</h5>
+                <p class="card-text">We are the greatest and the best in art and science education.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-0" style="margin-bottom: 20px;">
+        <div class="col-md-4" >
+            <img src="{% static 'siba-student/images/a3.jpg' %}" class="img-fluid rounded-start" alt="Academics">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Academic Activites</h5>
+                <p class="card-text">Good teaching is more a giving of right questions than a giving of right answers.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-0" style="margin-bottom: 20px;">
+        <div class="col-md-4">
+            <img src="{% static 'siba-student/images/a4.jpg' %}" class="img-fluid rounded-start" alt="Sports">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Sports</h5>
+                <p class="card-text">The only one who can tell you 'you can't win' is you and you don't have to listen.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock%}
+
+<!-- content of the current page ends here -->
